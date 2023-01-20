@@ -28,25 +28,22 @@ function LandingPage() {
     dispatch(getHotels());
   }, [dispatch]);
 
+  console.log(userDB);
 
-console.log(userDB)
-
-    useEffect( () => {
-      if (user) {
-        dispatch(
-          postUser({
-            name: user.name,
-            email: user.email,
-            email_verified: user.email_verified,
-            status: 'guest',
-          })
-        ).then(res => {
-          dispatch(getUserById(user.email))
-        }) 
-       
-
-      }
-    }, [ dispatch, user]);
+  useEffect(() => {
+    if (user) {
+      dispatch(
+        postUser({
+          name: user.name,
+          email: user.email,
+          email_verified: user.email_verified,
+          status: "guest",
+        })
+      ).then((res) => {
+        dispatch(getUserById(user.email));
+      });
+    }
+  }, [dispatch, user]);
 
   if (hotels.length) {
     hotels.forEach((hotel) => {
@@ -67,14 +64,11 @@ console.log(userDB)
         </p>
       </div> */}
 
-      
       <div className="content backdrop-blur w-3/6">
         <h1 className="title">We Travel</h1>
         <h2 className="sub_title">Bienvenidos</h2>
+      </div>
 
-        </div>
-        
-        
       {/* <div className="relative p-24 m-8">
         <Search></Search>
       </div> */}
@@ -88,6 +82,8 @@ console.log(userDB)
       </div>
       <div className="mt-24 mb-5">
         <Swiper
+          slidesPerView={3}
+          // spaceBetween={30}
           navigation={true}
           modules={[Navigation]}
           className="mySwiper justify-center items-center backdrop-blur "
